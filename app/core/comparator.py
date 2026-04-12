@@ -80,6 +80,7 @@ print(compare_dicts({"a": 1}, {"a": 2}))
 print(compare_dicts({"a": 1}, {"b": 1}))
 print(compare_dicts({"user": {"name": "Ali"}}, {"user": {"name": "Alia"}}))
 print(compare_dicts({}, {"user": {"name": "Alia", "age": 30}}))
+print( compare_dicts({"a": "1"}, {"a": 1}) )
 
 # output :
 # ['Changed value: a from 1 to 2']
