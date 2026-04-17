@@ -84,15 +84,6 @@ def compare_dicts(old_dict, new_dict, path=""):
 # L'ajout est plus intéressant à analyser (nouvelle donnée créée),
 # donc on veut plus de détail que pour la suppression.
 
-# tests
-print(compare_dicts({"a": 1}, {"a": 2})) # ['Changed value: a from 1 to 2']
-print(compare_dicts({"a": 1}, {"b": 1})) # ['Removed key: a', 'Added key: b'] 
-print(compare_dicts({"user": {"name": "Ali"}}, {"user": {"name": "Alia"}})) # ['Changed value: user.name from Ali to Alia']
-print(compare_dicts({}, {"user": {"name": "Alia", "age": 30}})) # ['Added key: user', 'Added key: user.name', 'Added key: user.age']
-print( compare_dicts({"a": "1"}, {"a": 1}) ) # ['Changed type: a from str to int']
-print( compare_dicts({"a": [1, 2]}, {"a": [1, 3]}) ) # ['Changed value: a from [1, 2] to [1, 3]']
-# print( compare_dicts({"a": [1, 2]}, {"a": [1, 3]}) ) # ['Changed value: a from [1, 2] to [1, 3]'] 
-
 ####################################################### LISTS ####################################################################################
 #================================================================================================================================================#
 ##################################################################################################################################################
@@ -130,6 +121,17 @@ def compare_lists( old_list, new_list, path=""):
 # cette approche n'est pas la plus optimale pour comparer des listes, car elle est très sensible aux changements d'ordre et aux ajouts/suppressions d'éléments.
 # Par exemple, si on ajoute un élément au début d'une liste, tous les éléments suivants seront considérés comme "changement de valeur" alors qu'en réalité il s'agit juste d'un décalage.
 # Dans un cadre métier ... y aura certainement des pertes de précision dans les changements détectés, mais ça peut être suffisant pour une première version.
+
+
+# tests
+print(compare_dicts({"a": 1}, {"a": 2})) # ['Changed value: a from 1 to 2']
+print(compare_dicts({"a": 1}, {"b": 1})) # ['Removed key: a', 'Added key: b'] 
+print(compare_dicts({"user": {"name": "Ali"}}, {"user": {"name": "Alia"}})) # ['Changed value: user.name from Ali to Alia']
+print(compare_dicts({}, {"user": {"name": "Alia", "age": 30}})) # ['Added key: user', 'Added key: user.name', 'Added key: user.age']
+print( compare_dicts({"a": "1"}, {"a": 1}) ) # ['Changed type: a from str to int']
+print( compare_dicts({"a": [1, 2]}, {"a": [1, 3]}) ) # ['Changed value: a from [1, 2] to [1, 3]']
+print( compare_dicts({"a": [1, 2]}, {"a": [1, 3]}) ) # ['Changed value: a from [1, 2] to [1, 3]'] 
+
 
 # tests
 print ("============================================ TESTS LISTS ============================================")
