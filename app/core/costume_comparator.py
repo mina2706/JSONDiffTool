@@ -1,4 +1,5 @@
 # JSON Comparator V1.0
+# this version is just for learning 
 
 ####################################################### UTILS ####################################################################################
 #================================================================================================================================================#
@@ -102,7 +103,7 @@ def compare_lists( old_list, new_list, path=""):
             elif isinstance(old_value, dict) and isinstance(new_value, dict): # cas de dict imbriqué
                 changes.extend(compare_dicts(old_value, new_value, path + f"[{i}]."))
             elif isinstance(old_value, list) and isinstance(new_value, list): # cas de liste imbriquée
-                changes.extend(compare_lists(old_value, new_value, path + f"[{i}]."))
+                changes.extend(compare_lists(old_value, new_value, path + f"[{i}]"))
             # changement de valeur :
             elif change_value(old_value, new_value):
                 changes.append(f"Changed value: {path}[{i}] from {old_value} to {new_value}")
