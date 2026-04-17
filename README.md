@@ -32,6 +32,10 @@ The first version focuses on:
 - direct display of differences in the interface,
 - optional CSV export of comparison results.
 
+## Recent changes
+- Kept the learning comparator in `app/core/costum_comparator.py`
+- Project is moving toward the main `app/core/deepdiff_comparator.py` implementation
+
 ## Planned improvements
 
 Future versions may include:
@@ -41,7 +45,7 @@ Future versions may include:
 - search for a specific field,
 - comparison history,
 - ignoring technical fields,
-- advanced list handling.
+- stronger DeepDiff-based comparison support.
 
 ## Expected difference format
 
@@ -68,7 +72,8 @@ JSONDiffTool/
 │   ├── main.py
 │   ├── core/
 │   │   ├── __init__.py
-│   │   └── comparator.py
+│   │   ├── costum_comparator.py
+│   │   └── deepdiff_comparator.py
 │   ├── ui/
 │   │   ├── __init__.py
 │   │   └── interface.py
@@ -77,21 +82,24 @@ JSONDiffTool/
 │       └── json_loader.py
 ├── tests/
 │   ├── __init__.py
-│   └── test_comparator.py
-├── sample_data/
-│   ├── before.json
-│   └── after.json
+│   ├── test_contum_comparator.py
+│   └── test_deepdiff_comparator.py
 ├── README.md
 ├── requirements.txt
 └── .gitignore
 ```
+
 ## Tech stack
+
 - Python
 - Streamlit for the interface
+- DeepDiff for JSON comparison
 - Pytest for testing
 
 ## Project status
+
 V1 in progress.
 
 ## Notes
+
 All example JSON files used in this repository must be anonymized.

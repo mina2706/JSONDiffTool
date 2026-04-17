@@ -1,5 +1,5 @@
-from app.core.costume_comparator import compare_dicts
-from app.core.costume_comparator import compare_lists
+from app.core.costum_comparator import compare_dicts
+from app.core.costum_comparator import compare_lists
 
 old_dict = {"name": "Alice", "age": 30, "address": {"city": "Paris", "zip": "75000"}}
 new_dict_value_change = {"name": "Alice", "age": 31, "address": {"city": "Paris", "zip": "75000"}}
