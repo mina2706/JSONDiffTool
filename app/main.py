@@ -1,78 +1,101 @@
 from core.deepdiff_comparator import compareJson , diff_parser
-from app.utils.json_utils import jprint
+from utils.json_utils import jprint
 
 before = {
     "name": "Alice",
-    "age": 30,
+    "age": "30",
     "adresse": {"street": "123 Main St", "zip": "20001"},
-    "city": "New York"
+    "city": "New York",
+    "job": "Engineer",
+    "projects": ["Project A", "Project B"]
 }
 
 after = {
     "name": "Alice",
     "age": 30,
     "adresse": {"street": "123 Main St", "zip": "10001"},
-    "city": "New York"
+    "city": "New York",
+    "nationality": "American",
+    "projects": ["Project D"]
 }
 
 if __name__ == "__main__":
-    parsed_differences = diff_parser(compareJson(before, after))
+    differences = compareJson(before, after)
+    jprint(differences)
+    parsed_differences = diff_parser(differences)
     jprint(parsed_differences)
 
 # Output:
 # diff brut
 """
     {
-        'type_changes': 
-            {
-                "root['age']": 
-                {
-                    'old_type': <class 'int'>, 
-                    'new_type': <class 'str'>, 
-                    'old_value': 30, 
-                    'new_value': '30'
-                }
-            }, 
-        'values_changed': 
-        {
-            "root['name']": 
-            {
-                'new_value': 'Lora', 
-                'old_value': 'Alice'
+        "type_changes": {
+            "root['age']": {
+                "old_type": "<class 'str'>",
+                "new_type": "<class 'int'>",
+                "old_value": "30",
+                "new_value": 30
             }
+        },
+        "dictionary_item_added": {
+            "root['nationality']": "American"
+        },
+        "dictionary_item_removed": {
+            "root['job']": "Engineer"
+        },
+        "values_changed": {
+            "root['adresse']['zip']": {
+                "new_value": "10001",
+                "old_value": "20001"
+            },
+            "root['projects'][0]": {
+                "new_value": "Project D",
+                "old_value": "Project A"
+            }
+        },
+        "iterable_item_removed": {
+            "root['projects'][1]": "Project B"
         }
     }
-
 """
 # diff parsé
 """
     [
         {
-            "category": "type_changes",
-            "path": "root['age']",
-            "old_type": "<class 'int'>",
-            "new_type": "<class 'str'>"
+            "field": "[age]",
+            "type": "type_changes",
+            "old": "str",
+            "new": "int"
         },
         {
-            "category": "dictionary_item_added",
-            "path": "root['adresse']",
-            "added": {
-                "street": "123 Main St",
-                "zip": "10001"
-            }
+            "field": "[nationality]",
+            "type": "dictionary_item_added",
+            "old": null,
+            "new": "American"
         },
         {
-            "category": "values_changed",
-            "path": "root['name']",
-            "old_value": "Alice",
-            "new_value": "Lora"
+            "field": "[job]",
+            "type": "dictionary_item_removed",
+            "old": "Engineer",
+            "new": null
         },
         {
-            "category": "values_changed",
-            "path": "root['city']",
-            "old_value": "New York",
-            "new_value": "los angeles"
+            "field": "[adresse][zip]",
+            "type": "values_changed",
+            "old": "20001",
+            "new": "10001"
+        },
+        {
+            "field": "[projects][0]",
+            "type": "values_changed",
+            "old": "Project A",
+            "new": "Project D"
+        },
+        {
+            "field": "[projects][1]",
+            "type": "iterable_item_removed",
+            "old": "Project B",
+            "new": null
         }
     ]
-
 """
