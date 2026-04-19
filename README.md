@@ -92,7 +92,7 @@ JSONDiffTool/
 ## Tech stack
 
 - Python
-- Streamlit for the interface
+- tkinter for the interface
 - DeepDiff for JSON comparison
 - Pytest for testing
 
