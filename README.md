@@ -109,10 +109,26 @@ Each detected difference should contain at least:
 
 Handled change types in V1:
 
-- `modified`
+- `value_changed`
 - `added`
 - `removed`
 - `type_changes`
+
+## List comparison
+
+In V1, list order matters.
+
+If the order changes, JDT may detect value changes, added items, or removed items, even if the list contains the same elements.
+
+This behavior may be improved in future versions.
+
+## List comparison
+
+In V1, list order matters.
+
+If the order changes, JDT may detect value changes, added items, or removed items, even if the list contains the same elements.
+
+This behavior may be improved in future versions.
 
 ## Project structure
 

@@ -70,15 +70,19 @@ def diff_parser(diff):
             changes = diff[category][path] # extraire les changements, 
             # ex: {'old_type': <class 'int'>, 'new_type': <class 'str'>, 'old_value': 30, 'new_value': '30'} 
             if category == "type_changes":
+                parsed_diff["type"]= "type_changed"
                 parsed_diff["old"] = type_parser(changes.get("old_type"))
                 parsed_diff["new"] = type_parser(changes.get("new_type"))
             elif category == "values_changed":
+                parsed_diff["type"] = "value_changed"
                 parsed_diff["old"] = changes.get("old_value")
                 parsed_diff["new"] = changes.get("new_value")
             elif category == "dictionary_item_added" or category == "iterable_item_added":
+                parsed_diff["type"] = "added"
                 parsed_diff["old"] = None
                 parsed_diff["new"] = changes
             elif category == "dictionary_item_removed" or category == "iterable_item_removed":
+                parsed_diff["type"] = "removed"
                 parsed_diff["old"] = changes
                 parsed_diff["new"] = None
             # ces catégorie sont les plus courantes, mais il en existe d'autres (ex: iterable_item_added, iterable_item_removed, etc.)
@@ -101,7 +105,7 @@ def path_parser(path):
         Returns:
             str: Normalized bracket-style path.
     """
-    return path.replace("root", "").replace("'", "")
+    return path.removeprefix("root").replace("'", "")
 
 def type_parser(type_str):
     """

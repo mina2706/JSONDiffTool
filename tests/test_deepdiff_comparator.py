@@ -11,7 +11,7 @@ def test_diff_parser_values_changed():
     expected_output = [
         {
             "field": "[name]",
-            "type": "values_changed",  
+            "type": "value_changed",  
             "old": "Alice",
             "new": "Lora"
         }
@@ -30,7 +30,7 @@ def test_diff_parser_type_changes():
     expected_output = [
         {
             "field": "[age]",
-            "type": "type_changes",  
+            "type": "type_changed",  
             "old": "int",
             "new": "str"
         }
@@ -50,7 +50,7 @@ def test_diff_parser_dictionary_item_added():
     expected_output = [
         {
             "field": "[age]",
-            "type": "dictionary_item_added",  
+            "type": "added",  
             "old": None,
             "new": 30
         }
@@ -71,7 +71,7 @@ def test_diff_parser_dictionary_item_removed():
         {
             
             "field": "[age]",
-            "type": "dictionary_item_removed",  
+            "type": "removed",  
             "old" : 30,
             "new": None
         }
@@ -90,13 +90,13 @@ def test_diff_parser_lists_changes():
     expected_output = [
         {
             "field": "[projects][0]",
-            "type": "values_changed",
+            "type": "value_changed",
             "old": "project1",
             "new": "project11"
         },
         {
             "field": "[projects][2]",
-            "type": "iterable_item_added",
+            "type": "added",
             "old": None,
             "new": "project3"
         }
@@ -114,3 +114,6 @@ def test_type_parser():
     assert type_parser(str) == "str"
     assert type_parser(list) == "list"
     assert type_parser(dict) == "dict"
+    assert type_parser(bool) == "bool"
+    assert type_parser(float) == "float"
+    assert type_parser(type(None)) == "NoneType"
