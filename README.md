@@ -129,7 +129,7 @@ Handled change types in V1:
     │   │   └── interface.py
     │   └── utils/
     │       ├── __init__.py
-    │       └── json_loader.py 
+    │       └── json_utils.py 
     ├── docs/
     |   └── interface-prototype.png
     ├── tests/
